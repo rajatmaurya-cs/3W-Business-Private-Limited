@@ -16,6 +16,18 @@ const app = express();
 
 app.use(cors())
 
+import cors from "cors";
+
+app.use(
+  cors({
+    origin: [ process.env.FRONTED_URL],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+
 app.options("*", cors());
 
 app.use(express.json());
