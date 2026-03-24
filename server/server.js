@@ -18,37 +18,37 @@ app.use(cors())
 
 import cors from "cors";
 
-app.use(
-  cors({
-    origin: [ process.env.FRONTED_URL],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOptions));
+
+app.options(/.*/, cors(corsOptions));
 
 
-app.options("*", cors());
 
-app.use(express.json());
 
 
 let x = false;
 
-const init = async ()=>{
+const init = async () => {
 
-        await connectDB();
-    
+  await connectDB();
+
 }
 
-if(!x)init();
+if (!x) init();
 
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: "OK",
     message: "Server is running 🚀",
   });
-  return ;
+  return;
 });
 
 
@@ -67,9 +67,9 @@ app.use((req, res) => {
 
 
 
-app.listen(3000,()=>{
-    
-    console.log('Server is running on PORT: 3000')
+app.listen(3000, () => {
+
+  console.log('Server is running on PORT: 3000')
 })
 
 
