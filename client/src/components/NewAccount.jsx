@@ -10,20 +10,81 @@ function NewAccount() {
   const navigate = useNavigate();
 
   const [validated, setValidated] = useState(false);
-  const [email, setemail] = useState('');
-  const [password, setpassword] = useState('');
-  const [name, setname] = useState('');
   const [loading, setloading] = useState(false);
 
+  // 🔥 states
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    city: "",
+    state: "",
+    zip: "",
+    terms: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  // 🔥 handle change
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  // 🔥 VALIDATION FUNCTION
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    if (!formData.password.trim()) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Minimum 6 characters required";
+    }
+
+    if (!formData.city.trim()) newErrors.city = "City is required";
+    if (!formData.state.trim()) newErrors.state = "State is required";
+    if (!formData.zip.trim()) newErrors.zip = "Zip is required";
+
+    if (!formData.terms) newErrors.terms = "You must accept terms";
+
+    return newErrors;
+  };
+
+  // 🔥 HANDLE SUBMIT
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setloading(true);
+
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+    setValidated(true);
+
+    // ❌ STOP if errors exist
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
 
     try {
+      setloading(true);
+
       const res = await Api.post("/auth/signin", {
-        email,
-        password,
-        name,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        password: formData.password,
+        city: formData.city.trim(),
+        state: formData.state.trim(),
+        zip: formData.zip.trim(),
       });
 
       if (res.data.success) {
@@ -68,95 +129,117 @@ function NewAccount() {
           Create Account 🚀
         </h3>
 
-        {/* Name */}
-        <Row className="mb-3">
-          <Form.Group as={Col} md="12">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              style={{ padding: "10px", borderRadius: "6px" }}
-              required
-              type="text"
-              placeholder="Enter name"
-              value={name}
-              onChange={(e) => setname(e.target.value)}
-            />
-          </Form.Group>
-        </Row>
+        {/* NAME */}
+        <Form.Group className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            isInvalid={!!errors.name}
+            placeholder="Enter name"
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors.name}
+          </Form.Control.Feedback>
+        </Form.Group>
 
-        {/* Email + Password */}
+        {/* EMAIL + PASSWORD */}
         <Row className="mb-3">
 
           <Form.Group as={Col} md="6">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              style={{ padding: "10px", borderRadius: "6px" }}
-              required
-              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              isInvalid={!!errors.email}
               placeholder="Enter email"
-              value={email}
-              onChange={(e) => setemail(e.target.value)}
             />
+            <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="6">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              style={{ padding: "10px", borderRadius: "6px" }}
-              required
+              name="password"
               type="password"
+              value={formData.password}
+              onChange={handleChange}
+              isInvalid={!!errors.password}
               placeholder="Enter password"
-              value={password}
-              onChange={(e) => setpassword(e.target.value)}
-              minLength={6}
             />
+            <Form.Control.Feedback type="invalid">
+              {errors.password}
+            </Form.Control.Feedback>
           </Form.Group>
 
         </Row>
 
-        {/* Address */}
+        {/* ADDRESS */}
         <Row className="mb-3">
 
           <Form.Group as={Col} md="6">
             <Form.Label>City</Form.Label>
             <Form.Control
-              style={{ padding: "10px", borderRadius: "6px" }}
-              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              isInvalid={!!errors.city}
               placeholder="City"
-              required
             />
+            <Form.Control.Feedback type="invalid">
+              {errors.city}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="3">
             <Form.Label>State</Form.Label>
             <Form.Control
-              style={{ padding: "10px", borderRadius: "6px" }}
-              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              isInvalid={!!errors.state}
               placeholder="State"
-              required
             />
+            <Form.Control.Feedback type="invalid">
+              {errors.state}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="3">
             <Form.Label>Zip</Form.Label>
             <Form.Control
-              style={{ padding: "10px", borderRadius: "6px" }}
-              type="text"
+              name="zip"
+              value={formData.zip}
+              onChange={handleChange}
+              isInvalid={!!errors.zip}
               placeholder="Zip"
-              required
             />
+            <Form.Control.Feedback type="invalid">
+              {errors.zip}
+            </Form.Control.Feedback>
           </Form.Group>
 
         </Row>
 
-        {/* Terms */}
+        {/* TERMS */}
         <Form.Group className="mb-3">
           <Form.Check
-            required
+            name="terms"
+            checked={formData.terms}
+            onChange={handleChange}
+            isInvalid={!!errors.terms}
             label="Agree to terms and conditions"
           />
+          <Form.Control.Feedback type="invalid">
+            {errors.terms}
+          </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Button */}
+        {/* BUTTON */}
         <Button
           type="submit"
           disabled={loading}
@@ -166,7 +249,6 @@ function NewAccount() {
             borderRadius: "6px",
             background: "#667eea",
             border: "none",
-            fontWeight: "500",
           }}
         >
           {loading ? "Creating..." : "Create Account"}

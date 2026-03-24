@@ -1,6 +1,6 @@
-/* Container */
+/* 🔥 Container */
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
@@ -9,22 +9,26 @@
 .upload-bar {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   margin-bottom: 30px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* 🟢 Round image picker */
+/* 🟢 Image picker */
 .image-picker {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: #eee;
+  background: #f1f3f5;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   overflow: hidden;
-  border: 2px solid #ddd;
+  border: 2px dashed #ccc;
 }
 
 .image-picker img {
@@ -34,17 +38,18 @@
 }
 
 .image-picker span {
-  font-size: 24px;
-  color: #666;
+  font-size: 22px;
+  color: #777;
 }
 
-/* 🟢 Small input */
+/* 🟢 Input */
 .small-input {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
   outline: none;
+  font-size: 14px;
 }
 
 .small-input:focus {
@@ -53,49 +58,56 @@
 
 /* 🟢 Button */
 .upload-btn {
-  padding: 8px 14px;
+  padding: 10px 16px;
   background: #007bff;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-}
-
-.upload-btn:hover {
-  background: #0056b3;
 }
 
 /* 🔥 Title */
 .title {
   margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* 🔥 Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
 }
 
 /* 🔥 Card */
 .card {
-  border: 1px solid #eee;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   background: white;
+  transition: 0.3s;
+  border: 1px solid #eee;
 }
 
-/* ✅ FIXED IMAGE ISSUE HERE */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+/* ✅ IMAGE (NO CROPPING) */
 .card img {
   width: 100%;
-  max-height: 250px;     /* prevents huge images */
-  object-fit: contain;   /* ✅ NO CROPPING */
+  height: auto;           /* 🔥 keeps full image */
+  max-height: 250px;      /* optional limit */
+  object-fit: contain;    /* ✅ no cut */
   background: #f5f5f5;
 }
 
-/* 🟢 Description */
+/* ✅ DESCRIPTION (FULL TEXT) */
 .card p {
-  padding: 10px;
+  padding: 10px 12px;
   font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+  word-break: break-word;
 }

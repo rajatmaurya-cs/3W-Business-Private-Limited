@@ -1,2 +1,8 @@
 
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

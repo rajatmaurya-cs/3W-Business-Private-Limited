@@ -23,7 +23,6 @@ const Home = () => {
     }
   };
 
-  // 🔥 Load images on page load
   useEffect(() => {
     fetchImages();
   }, []);
@@ -51,7 +50,7 @@ const Home = () => {
       });
 
       if (res.data.success) {
-        fetchImages(); // 🔥 refresh UI
+        fetchImages();
         setFile(null);
         setDescription("");
       }
@@ -68,7 +67,7 @@ const Home = () => {
       {/* 🔥 UPLOAD BAR */}
       <form className="upload-bar" onSubmit={handleSubmit}>
         
-        {/* 🟢 IMAGE PICKER */}
+        {/* IMAGE PICKER */}
         <label className="image-picker">
           {file ? (
             <img src={URL.createObjectURL(file)} alt="preview" />
@@ -83,7 +82,7 @@ const Home = () => {
           />
         </label>
 
-        {/* 🟢 INPUT */}
+        {/* INPUT */}
         <input
           type="text"
           placeholder="Write something..."
@@ -92,13 +91,13 @@ const Home = () => {
           className="small-input"
         />
 
-        {/* 🟢 BUTTON */}
+        {/* BUTTON */}
         <button type="submit" className="upload-btn">
           {loading ? "Uploading..." : "Upload"}
         </button>
       </form>
 
-      {/* 🔥 IMAGE GRID */}
+      {/* 🔥 GRID */}
       <h3 className="title">Recent Posts</h3>
 
       <div className="grid">
