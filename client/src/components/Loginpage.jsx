@@ -124,13 +124,7 @@ const Logingpage = () => {
   return (
     <div style={styles.container}>
 
-      {/* 🔥 FULL SCREEN LOADER */}
-      {loading && (
-        <div style={styles.overlay}>
-          <div style={styles.spinner}></div>
-        </div>
-      )}
-
+    
       <div style={styles.card}>
         <h2 style={styles.title}>Login</h2>
         <p style={styles.subtitle}>
