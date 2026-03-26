@@ -1,5 +1,5 @@
 ## 🌐 Live Demo
-🔗 https://3w-task1-fronted.vercel.app/
+🔗 https://3w-task1-fronted.vercel.app
 
 
 ## 📂 GitHub Repository

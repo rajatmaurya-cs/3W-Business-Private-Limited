@@ -1,7 +1,3 @@
-
-
-
-
 import Api from './Api';
 
 import Logingpage from './components/Loginpage';

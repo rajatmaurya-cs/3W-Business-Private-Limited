@@ -12,7 +12,7 @@ function NewAccount() {
   const [validated, setValidated] = useState(false);
   const [loading, setloading] = useState(false);
 
-  // 🔥 states
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +25,7 @@ function NewAccount() {
 
   const [errors, setErrors] = useState({});
 
-  // 🔥 handle change
+  
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -35,7 +35,7 @@ function NewAccount() {
     });
   };
 
-  // 🔥 VALIDATION FUNCTION
+ 
   const validateForm = () => {
     const newErrors = {};
 
@@ -62,7 +62,7 @@ function NewAccount() {
     return newErrors;
   };
 
-  // 🔥 HANDLE SUBMIT
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -70,7 +70,7 @@ function NewAccount() {
     setErrors(validationErrors);
     setValidated(true);
 
-    // ❌ STOP if errors exist
+
     if (Object.keys(validationErrors).length > 0) {
       return;
     }
@@ -129,7 +129,7 @@ function NewAccount() {
           Create Account 🚀
         </h3>
 
-        {/* NAME */}
+   
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -144,7 +144,7 @@ function NewAccount() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* EMAIL + PASSWORD */}
+     
         <Row className="mb-3">
 
           <Form.Group as={Col} md="6">
@@ -178,7 +178,7 @@ function NewAccount() {
 
         </Row>
 
-        {/* ADDRESS */}
+       
         <Row className="mb-3">
 
           <Form.Group as={Col} md="6">
@@ -225,7 +225,7 @@ function NewAccount() {
 
         </Row>
 
-        {/* TERMS */}
+    
         <Form.Group className="mb-3">
           <Form.Check
             name="terms"
@@ -239,7 +239,7 @@ function NewAccount() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* BUTTON */}
+     
         <Button
           type="submit"
           disabled={loading}

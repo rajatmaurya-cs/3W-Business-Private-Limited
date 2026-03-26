@@ -57,7 +57,7 @@ const Logingpage = () => {
     fontWeight: "500"
   },
 
-  /* 🔥 FULL SCREEN OVERLAY */
+
   overlay: {
     position: "fixed",
     top: 0,
@@ -71,7 +71,7 @@ const Logingpage = () => {
     zIndex: 999
   },
 
-  /* 🔥 BIG SPINNER */
+
   spinner: {
     width: "50px",
     height: "50px",
@@ -81,7 +81,7 @@ const Logingpage = () => {
     animation: "spin 1s linear infinite"
   },
 
-  /* 🔥 BUTTON SPINNER */
+  
   smallSpinner: {
     width: "16px",
     height: "16px",
@@ -100,7 +100,7 @@ const Logingpage = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
 
-    if (loading) return; // prevent double click
+    if (loading) return; 
 
     setloading(true);
 

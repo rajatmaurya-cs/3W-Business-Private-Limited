@@ -8,7 +8,7 @@ const Home = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 🔥 FETCH IMAGES
+
   const fetchImages = async () => {
     try {
       const res = await Api.get("/getImage");
@@ -27,7 +27,7 @@ const Home = () => {
     fetchImages();
   }, []);
 
-  // 🔥 HANDLE SUBMIT
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,10 +64,10 @@ const Home = () => {
   return (
     <div className="container">
       
-      {/* 🔥 UPLOAD BAR */}
+
       <form className="upload-bar" onSubmit={handleSubmit}>
         
-        {/* IMAGE PICKER */}
+  
         <label className="image-picker">
           {file ? (
             <img src={URL.createObjectURL(file)} alt="preview" />
@@ -82,7 +82,7 @@ const Home = () => {
           />
         </label>
 
-        {/* INPUT */}
+     
         <input
           type="text"
           placeholder="Write something..."
@@ -91,13 +91,13 @@ const Home = () => {
           className="small-input"
         />
 
-        {/* BUTTON */}
+    
         <button type="submit" className="upload-btn">
           {loading ? "Uploading..." : "Upload"}
         </button>
       </form>
 
-      {/* 🔥 GRID */}
+     
       <h3 className="title">Recent Posts</h3>
 
       <div className="grid">
