@@ -1,9 +1,9 @@
 ## 🌐 Live Demo
- https://your-frontend-link.vercel.app
+🔗 https://3w-task1-fronted.vercel.app/
 
 
 ## 📂 GitHub Repository
-🔗 https://github.com/your-username/your-repo-name
+🔗 https://github.com/rajatmaurya-cs/3W-Business-Private-Limited
 
 ## 🧠 Features
 🔐 Authentication
