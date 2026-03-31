@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Api from "../Api";
-
+import "../Home.css";
 const Home = () => {
   const [file, setFile] = useState(null);
   const [description, setDescription] = useState("");
